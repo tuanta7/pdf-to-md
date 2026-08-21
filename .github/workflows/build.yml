@@ -1,0 +1,15 @@
+name: build
+on: [push, workflow_dispatch]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pymupdf4llm pyinstaller
+      - name: smoke test
+        run: python -c "import pymupdf4llm; md = pymupdf4llm.to_markdown('sample.pdf', embed_images=True); assert md.lstrip().startswith('# '), 'no headings'; assert 'data:image' in md, 'no images'"
+      - run: pyinstaller --onefile --windowed --collect-all pymupdf4llm --collect-all pymupdf --name "PDF to Markdown" pdf_to_md.py
+      - uses: actions/upload-artifact@v4
+        with: { name: PDF-to-Markdown, path: dist/*.exe }
