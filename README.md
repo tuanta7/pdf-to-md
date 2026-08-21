@@ -4,8 +4,9 @@ Double-click the app, pick a PDF, get a `.md` file next to it. That's the whole 
 
 - First launch shows **"Windows protected your PC"** — click _More info → Run anyway_.
   The app is unsigned; that warning is normal.
-- It takes a few seconds to open, and a big PDF takes a while to convert with no
-  progress shown. Wait for the "Done" box rather than double-clicking again.
+- It takes a few seconds to open, and a progress bar runs while it converts. A big
+  PDF takes a while — a 660-page one is about two and a half minutes. Wait for the
+  "Done" box rather than double-clicking again.
 
 ## Running the script directly
 
